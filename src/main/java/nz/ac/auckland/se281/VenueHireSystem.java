@@ -68,7 +68,7 @@ List<String> venueNamesList = new ArrayList<String>();
         }
 
         Venue v1 = new Venue(venueName, venueCode, capacityInput, hireFeeInput);
-        System.out.println("Successfully created venue " + venueName + " " + venueCode + ".");
+        System.out.println("Successfully created venue '" + venueName + "' " + venueCode + ".");
 
   }
 
