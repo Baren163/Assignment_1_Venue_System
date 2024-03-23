@@ -66,7 +66,7 @@ List<Venue> venueList = new ArrayList<Venue>();
       }
 
       for (int i = 0; i < venueList.size(); i++){
-        System.out.println(venueList.get(i).getName() + venueList.get(i).getCode() + venueList.get(i).getCapacity() + " people - $" + venueList.get(i).gethireFee() + " base hire fee. Next available on %s");
+        System.out.println("  * " + venueList.get(i).getName() + " (" + venueList.get(i).getCode() + ") - " + venueList.get(i).getCapacity() + " people - $" + venueList.get(i).gethireFee() + " base hire fee. Next available on %s");
       }
 
   }
@@ -87,7 +87,7 @@ List<Venue> venueList = new ArrayList<Venue>();
         // Check if the venueCode is already being used
         for (int i = 0; i < venueList.size(); i++){
           if (venueCode.equals(venueList.get(i).getCode())){
-            System.out.println("Venue not created: code " + venueCode + " is already used for " + venueList.get(i).getName() + ".");
+            System.out.println("Venue not created: code '" + venueCode + "' is already used for '" + venueList.get(i).getName() + "'.");
             return;
           }
         }
