@@ -26,4 +26,11 @@ public class Venue {
     return this.venueName;
   }
 
+  public String getCapacity(){
+    return this.capacityInput;
+  }
+
+  public String gethireFee(){
+    return this.hireFeeInput;
+  }
 }
