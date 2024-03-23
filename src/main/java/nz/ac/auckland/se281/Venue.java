@@ -14,10 +14,16 @@ public class Venue {
     this.venueCode = venueCode;
     this. capacityInput = capacityInput;
     this.hireFeeInput = hireFeeInput;
-
-
   }
 
+  public String getCode(){
 
+    return this.venueCode;
+  }
+
+  public String getName(){
+
+    return this.venueName;
+  }
 
 }

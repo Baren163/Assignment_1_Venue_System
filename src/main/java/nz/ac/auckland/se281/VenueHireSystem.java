@@ -15,6 +15,9 @@ List<String> venueCodesList = new ArrayList<String>();
 // Venue names list
 List<String> venueNamesList = new ArrayList<String>();
 
+// Venue list
+List<Venue> venueList = new ArrayList<Venue>();
+
   public VenueHireSystem() {}
 
   public void printVenues() {
@@ -23,6 +26,7 @@ List<String> venueNamesList = new ArrayList<String>();
       // Firstly check if there are any venues to print
       if (venueNamesList.isEmpty()){
         MessageCli.NO_VENUES.printMessage();
+        return;
       }
 
       switch (venueNamesList.size()) {
@@ -65,6 +69,10 @@ List<String> venueNamesList = new ArrayList<String>();
         
         MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueNamesList.size()), "s");
           break;
+      }
+
+      for (int i = 0; i < venueNamesList.size(); i++){
+        System.out.println(venueNamesList.get(i) + venueCodesList.get(i) + "<VENUE_CAPACITY>" people - $<VENUE_HIRE_FEE> base hire fee. Next available on %s);
       }
 
   }
@@ -118,10 +126,10 @@ List<String> venueNamesList = new ArrayList<String>();
           return;
         }
 
-        // Create the new venue instance with the specified parameters
-        Venue v1 = new Venue(venueName, venueCode, capacityInput, hireFeeInput);
+        
+        // Create the new venue instance with the specified parameters and add it straight to the list
+        venueList.add(new Venue(venueName, venueCode, capacityInput, hireFeeInput));
         System.out.println("Successfully created venue '" + venueName + "' (" + venueCode + ").");
-
   }
 
   public void setSystemDate(String dateInput) {
