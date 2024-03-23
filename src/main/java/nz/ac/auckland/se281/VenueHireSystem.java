@@ -9,12 +9,6 @@ import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
 
-// Venue codes list
-List<String> venueCodesList = new ArrayList<String>();
-
-// Venue names list
-List<String> venueNamesList = new ArrayList<String>();
-
 // Venue list
 List<Venue> venueList = new ArrayList<Venue>();
 
@@ -24,12 +18,12 @@ List<Venue> venueList = new ArrayList<Venue>();
       // I want this method to print all of the venues in the system and a selection of its details
 
       // Firstly check if there are any venues to print
-      if (venueNamesList.isEmpty()){
+      if (venueList.isEmpty()){
         MessageCli.NO_VENUES.printMessage();
         return;
       }
 
-      switch (venueNamesList.size()) {
+      switch (venueList.size()) {
         case 1:
         MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
           break;
@@ -67,12 +61,12 @@ List<Venue> venueList = new ArrayList<Venue>();
           break;
         default:
         
-        MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueNamesList.size()), "s");
+        MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueList.size()), "s");
           break;
       }
 
-      for (int i = 0; i < venueNamesList.size(); i++){
-        System.out.println(venueNamesList.get(i) + venueCodesList.get(i) + "<VENUE_CAPACITY>" people - $<VENUE_HIRE_FEE> base hire fee. Next available on %s);
+      for (int i = 0; i < venueList.size(); i++){
+        System.out.println(venueList.get(i).getName() + venueList.get(i).getCode() + venueList.get(i).getCapacity() + " people - $" + venueList.get(i).gethireFee() + " base hire fee. Next available on %s");
       }
 
   }
@@ -91,9 +85,9 @@ List<Venue> venueList = new ArrayList<Venue>();
         }
 
         // Check if the venueCode is already being used
-        for (int i = 0; i < venueCodesList.size(); i++){
-          if (venueCode.equals(venueCodesList.get(i))){
-            System.out.println("Venue not created: code " + venueCode + " is already used for " + venueNamesList.get(i) + ".");
+        for (int i = 0; i < venueList.size(); i++){
+          if (venueCode.equals(venueList.get(i).getCode())){
+            System.out.println("Venue not created: code " + venueCode + " is already used for " + venueList.get(i).getName() + ".");
             return;
           }
         }
