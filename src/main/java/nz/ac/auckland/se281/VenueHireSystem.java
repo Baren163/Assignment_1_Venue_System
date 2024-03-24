@@ -129,7 +129,7 @@ List<Venue> venueList = new ArrayList<Venue>();
         
         // Create the new venue instance with the specified parameters and add it straight to the list
         venueList.add(new Venue(venueName, venueCode, capacityInput, hireFeeInput));
-        System.out.println("Successfully created venue '" + venueName + "' (" + venueCode + ").");
+        MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
   }
 
                 // -------------------------------  CP 2  ------------------------------- \\
@@ -146,17 +146,18 @@ List<Venue> venueList = new ArrayList<Venue>();
 
     systemDate = day + "/" + month + "/" + year;
 
-    System.out.println("System date set to " + systemDate + ".");
+    MessageCli.DATE_SET.printMessage(systemDate);
+
   }
 
   public void printSystemDate() {
 
     if (systemDate.isBlank()){
-      System.out.println("Current system date is not set.");
+      MessageCli.CURRENT_DATE.printMessage("not set");
       return;
     }
     
-    System.out.println("Current system date is " + systemDate + ".");
+    MessageCli.CURRENT_DATE.printMessage(systemDate);
 
   }
 
@@ -170,6 +171,13 @@ List<Venue> venueList = new ArrayList<Venue>();
 
 if (systemDate.isEmpty()){
 
+  MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+
+}
+
+if (venueList.isEmpty()){
+
+  MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
 
 }
   }
