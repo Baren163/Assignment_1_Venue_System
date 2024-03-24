@@ -118,11 +118,11 @@ List<Venue> venueList = new ArrayList<Venue>();
 
         // Check if capacity and hireFee are positive numbers
         if(capacityInput_int < 0){
-          System.out.println("Venue not created: capacity must be a positive number.");
+          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
           return;
         }
         if(hireFeeInput_int < 0){
-          System.out.println("Venue not created: hire fee must be a positive number.");
+          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
           return;
         }
 
