@@ -66,7 +66,9 @@ List<Venue> venueList = new ArrayList<Venue>();
       }
 
       for (int i = 0; i < venueList.size(); i++){
-        System.out.println("  * " + venueList.get(i).getName() + " (" + venueList.get(i).getCode() + ") - " + venueList.get(i).getCapacity() + " people - $" + venueList.get(i).gethireFee() + " base hire fee. Next available on %s");
+        
+        MessageCli.VENUE_ENTRY.printMessage(venueList.get(i).getName(), venueList.get(i).getCode(), venueList.get(i).getCapacity(), venueList.get(i).gethireFee());
+        
       }
 
   }
@@ -80,35 +82,39 @@ List<Venue> venueList = new ArrayList<Venue>();
 
         // Check if venueName parameter is blank
         if (venueName.isBlank()){
-          System.out.println("Venue not created: venue name must not be empty.");
+          MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
           return;
         }
 
         // Check if the venueCode is already being used
         for (int i = 0; i < venueList.size(); i++){
           if (venueCode.equals(venueList.get(i).getCode())){
-            System.out.println("Venue not created: code '" + venueCode + "' is already used for '" + venueList.get(i).getName() + "'.");
+
+            MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venueList.get(i).getName());
+            
             return;
           }
         }
         
+        int capacityInput_int;
+        int hireFeeInput_int;
+
         // Check if the capacityInput and hireFeeInput is a string with just a number
         try{
-          int capacityInput_int = Integer.parseInt(capacityInput);
+          capacityInput_int = Integer.parseInt(capacityInput);
         } catch(Exception e) {
-          System.out.println("Venue not created: capacity must be a number.");
+          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "");
           return;
         }
 
         try{
-          int hireFeeInput_int = Integer.parseInt(hireFeeInput);
+          hireFeeInput_int = Integer.parseInt(hireFeeInput);
         } catch(Exception e) {
-          System.out.println("Venue not created: hire fee must be a number.");
+          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
           return;
         }
 
-        int capacityInput_int = Integer.parseInt(capacityInput);
-        int hireFeeInput_int = Integer.parseInt(hireFeeInput);
+
 
         // Check if capacity and hireFee are positive numbers
         if(capacityInput_int < 0){
@@ -126,16 +132,46 @@ List<Venue> venueList = new ArrayList<Venue>();
         System.out.println("Successfully created venue '" + venueName + "' (" + venueCode + ").");
   }
 
+                // -------------------------------  CP 2  ------------------------------- \\
+
+  String systemDate = " ";
+
   public void setSystemDate(String dateInput) {
-    // TODO implement this method
+
+    String[] dateParts = dateInput.split("/");
+
+    String day = dateParts[0];
+    String month = dateParts[1];
+    String year = dateParts[2];
+
+    systemDate = day + "/" + month + "/" + year;
+
+    System.out.println("System date set to " + systemDate + ".");
   }
 
   public void printSystemDate() {
-    // TODO implement this method
+
+    if (systemDate.isBlank()){
+      System.out.println("Current system date is not set.");
+      return;
+    }
+    
+    System.out.println("Current system date is " + systemDate + ".");
+
   }
 
   public void makeBooking(String[] options) {
     // TODO implement this method
+//The system’s date must be set,
+//There must be at least one venue in the system,
+//The venue code must exist,
+//The venue must be available on the specified date, and
+//The booking date must not be in the past (today or later is OK in terms of the current system date).
+
+if (systemDate.isEmpty()){
+
+
+}
   }
 
   public void printBookings(String venueCode) {
