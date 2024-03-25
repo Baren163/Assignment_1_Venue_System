@@ -218,7 +218,27 @@ List<Venue> venueList = new ArrayList<Venue>();
     int systemMonthInt = Integer.parseInt(systemMonth);
     int systemYearInt = Integer.parseInt(systemYear);
 
-    if (dayInt < systemDayInt || monthInt < systemMonthInt || yearInt < systemYearInt){
+    boolean dateIsOk = false;
+
+    if (yearInt == systemYearInt){
+      if (monthInt == systemMonthInt){
+        if (dayInt >= systemDayInt){
+          dateIsOk = true;
+        } else if (dayInt < systemDayInt){
+          dateIsOk = false;
+        }
+      } else if (monthInt > systemMonthInt){
+        dateIsOk = true;
+      } else if (monthInt < systemMonthInt){
+        dateIsOk = false;
+      }
+    } else if (yearInt < systemYearInt){
+      dateIsOk = false;
+    } else if (yearInt > systemYearInt){
+      dateIsOk = true;
+    }
+
+    if (!dateIsOk){
       MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options[1], systemDate);
     }
 
