@@ -1,5 +1,8 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Venue {
 
   private String venueName;
@@ -7,6 +10,7 @@ public class Venue {
   private String capacityInput;
   private String hireFeeInput;
 
+  List<String> datesBooked = new ArrayList<String>();
 
   Venue(String venueName, String venueCode, String capacityInput, String hireFeeInput){
 
@@ -32,5 +36,9 @@ public class Venue {
 
   public String gethireFee(){
     return this.hireFeeInput;
+  }
+
+  public void bookDate(String date){
+    this.datesBooked.add(date);
   }
 }
