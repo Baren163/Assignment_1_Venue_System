@@ -162,17 +162,26 @@ List<Venue> venueList = new ArrayList<Venue>();
   }
 
   public void makeBooking(String[] options) {
-    // TODO implement this method
-  //The venue must be available on the specified date, and
-  //The booking date must not be in the past (today or later is OK in terms of the current system date).
+
     boolean codeExists = false;
+    int venueIndex;
+    venueIndex = -1;
+
+    for (int i = 0; i < venueList.size(); i++){
+      if (venueList.get(i).getCode() == options[0]){
+        venueIndex = i;
+        break;
+      }
+    }
 
     if (systemDate.isEmpty()){
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+      return;
     }
 
     if (venueList.isEmpty()){
       MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
+      return;
     }
 
     for (int i = 0; i < venueList.size(); i++){
@@ -183,7 +192,39 @@ List<Venue> venueList = new ArrayList<Venue>();
 
     if (codeExists == false){
       MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
+      return;
     }
+
+    if (venueList.get(venueIndex).isBookedOnThisDate(options[1])){
+      MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options[0], options[1]);
+      return;
+    }
+
+    String[] dateParts = options[1].split("/");
+    String day = dateParts[0];
+    String month = dateParts[1];
+    String year = dateParts[2];
+
+    int dayInt = Integer.parseInt(day);
+    int monthInt = Integer.parseInt(month);
+    int yearInt = Integer.parseInt(year);
+
+    String[] systemDateParts = options[1].split("/");
+    String systemDay = systemDateParts[0];
+    String systemMonth = systemDateParts[1];
+    String systemYear = systemDateParts[2];
+
+    int systemDayInt = Integer.parseInt(systemDay);
+    int systemMonthInt = Integer.parseInt(systemMonth);
+    int systemYearInt = Integer.parseInt(systemYear);
+
+    if (dayInt < systemDayInt || monthInt < systemMonthInt || yearInt < systemYearInt){
+      MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options[1], systemDate);
+    }
+
+    venueList.get(venueIndex).bookDate(options[1]);
+
+    MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venueList.get(venueIndex).getName(), options[1], options[3]);
   }
 
   public void printBookings(String venueCode) {

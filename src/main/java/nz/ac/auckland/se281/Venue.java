@@ -41,4 +41,13 @@ public class Venue {
   public void bookDate(String date){
     this.datesBooked.add(date);
   }
+
+  public boolean isBookedOnThisDate(String date){
+    for (int i = 0; i < datesBooked.size(); i++){
+      if (date.equals(datesBooked.get(i))){
+        return true;
+      }
+    }
+    return false;
+  }
 }
