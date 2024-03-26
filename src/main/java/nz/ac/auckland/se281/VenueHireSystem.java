@@ -132,6 +132,10 @@ List<Venue> venueList = new ArrayList<Venue>();
         MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
   }
 
+
+
+
+
                 // -------------------------------  CP 2  ------------------------------- \\
 
   String systemDate = " ";
@@ -149,6 +153,7 @@ List<Venue> venueList = new ArrayList<Venue>();
     MessageCli.DATE_SET.printMessage(systemDate);
 
   }
+
 
   public void printSystemDate() {
 
@@ -246,8 +251,33 @@ List<Venue> venueList = new ArrayList<Venue>();
       MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options[1], systemDate);
     }
 
-    venueList.get(venueIndex).bookDate(options[1]);
+    // When the options provided might not be ideal, but they aren’t enough to stop a booking from being made:
 
+    // If the specified number of attendees (options[3]) is below 25% of the venue capacity or above 100% of
+    //the venue capacity then change the number (options[3]) to 25% or 100% of the venue capacity respectively
+    //and print that message
+
+    // Turn options[3] (number of people attending) into integer to compare with venue capacity integer
+    int numAttenders_int = Integer.parseInt(options[3]);
+    int venueCapacity_int = Integer.parseInt(venueList.get(venueIndex).getCapacity());
+    if (4 * numAttenders_int < venueCapacity_int){
+      
+      numAttenders_int = (int)(0.25*venueCapacity_int);
+      String numAttenders = Integer.toString(numAttenders_int);
+      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], numAttenders, venueList.get(venueIndex).getCapacity());
+
+      options[3] = numAttenders;
+    } else if (numAttenders_int > venueCapacity_int){
+      numAttenders_int = venueCapacity_int;
+      String numAttenders = Integer.toString(numAttenders_int);
+      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], numAttenders, venueList.get(venueIndex).getCapacity());
+      
+      options[3] = numAttenders;
+    }
+
+
+    // Book the venue
+    venueList.get(venueIndex).bookDate(options[1]);
     MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venueList.get(venueIndex).getName(), options[1], options[3]);
   }
 
