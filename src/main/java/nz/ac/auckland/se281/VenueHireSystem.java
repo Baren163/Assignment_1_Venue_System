@@ -161,6 +161,7 @@ List<Venue> venueList = new ArrayList<Venue>();
 
   }
 
+  
   public void makeBooking(String[] options) {
 
     boolean codeExists = false;
@@ -168,7 +169,7 @@ List<Venue> venueList = new ArrayList<Venue>();
     venueIndex = -1;
 
     for (int i = 0; i < venueList.size(); i++){
-      if (venueList.get(i).getCode() == options[0]){
+      if (venueList.get(i).getCode().equals(options[0])){
         venueIndex = i;
         break;
       }
@@ -200,6 +201,7 @@ List<Venue> venueList = new ArrayList<Venue>();
       return;
     }
 
+    // Setting up the date variables to be processed through the date logic checher
     String[] dateParts = options[1].split("/");
     String day = dateParts[0];
     String month = dateParts[1];
@@ -220,6 +222,8 @@ List<Venue> venueList = new ArrayList<Venue>();
 
     boolean dateIsOk = false;
 
+
+    // Logic to check if the input date is before the system date
     if (yearInt == systemYearInt){
       if (monthInt == systemMonthInt){
         if (dayInt >= systemDayInt){
