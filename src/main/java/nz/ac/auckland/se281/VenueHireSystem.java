@@ -175,7 +175,7 @@ List<Venue> venueList = new ArrayList<Venue>();
       }
     }
 
-    if (systemDate.isEmpty()){
+    if (systemDate.isBlank()){
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
       return;
     }
