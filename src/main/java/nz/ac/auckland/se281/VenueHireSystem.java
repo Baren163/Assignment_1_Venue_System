@@ -197,7 +197,7 @@ List<Venue> venueList = new ArrayList<Venue>();
     }
 
     if (venueList.get(venueIndex).isBookedOnThisDate(options[1])){
-      MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options[0], options[1]);
+      MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venueList.get(venueIndex).getName(), options[1]);
       return;
     }
 
