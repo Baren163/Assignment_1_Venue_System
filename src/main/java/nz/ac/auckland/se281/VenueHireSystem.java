@@ -206,7 +206,7 @@ List<Venue> venueList = new ArrayList<Venue>();
       return;
     }
 
-    // Setting up the date variables to be processed through the date logic checher
+    // Setting up the date variables to be processed through the date logic checker
     String[] dateParts = options[1].split("/");
     String day = dateParts[0];
     String month = dateParts[1];
@@ -216,7 +216,7 @@ List<Venue> venueList = new ArrayList<Venue>();
     int monthInt = Integer.parseInt(month);
     int yearInt = Integer.parseInt(year);
 
-    String[] systemDateParts = options[1].split("/");
+    String[] systemDateParts = systemDate.split("/");
     String systemDay = systemDateParts[0];
     String systemMonth = systemDateParts[1];
     String systemYear = systemDateParts[2];
@@ -249,6 +249,7 @@ List<Venue> venueList = new ArrayList<Venue>();
 
     if (!dateIsOk){
       MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options[1], systemDate);
+      return;
     }
 
     // When the options provided might not be ideal, but they aren’t enough to stop a booking from being made:
