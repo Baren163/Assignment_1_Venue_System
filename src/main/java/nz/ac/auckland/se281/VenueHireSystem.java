@@ -280,6 +280,10 @@ List<Venue> venueList = new ArrayList<Venue>();
     // Book the venue
     venueList.get(venueIndex).bookDate(options[1]);
     MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venueList.get(venueIndex).getName(), options[1], options[3]);
+  
+    // Need to figure out how to update venues next available date and impement it when systemDate changes or
+    //when venue gets booked for a certain day
+  
   }
 
   public void printBookings(String venueCode) {
@@ -288,6 +292,10 @@ List<Venue> venueList = new ArrayList<Venue>();
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
     // TODO implement this method
+
+    String cateringTypeName = cateringType.getName();
+
+    // We need to add the catering service with a specified type to a specified booking
   }
 
   public void addServiceMusic(String bookingReference) {

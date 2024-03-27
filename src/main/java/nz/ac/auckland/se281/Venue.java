@@ -10,6 +10,8 @@ public class Venue {
   private String capacityInput;
   private String hireFeeInput;
 
+  private String nextAvailableDate;
+
   List<String> datesBooked = new ArrayList<String>();
 
   Venue(String venueName, String venueCode, String capacityInput, String hireFeeInput){
@@ -18,6 +20,44 @@ public class Venue {
     this.venueCode = venueCode;
     this. capacityInput = capacityInput;
     this.hireFeeInput = hireFeeInput;
+  }
+
+  public void updateNAD(String currentDate){
+    if (datesBooked.isEmpty()){
+      nextAvailableDate = currentDate;
+    }
+
+    for (int i = 0; i < datesBooked.size(); i++){
+      if (datesBooked.get(i).equals(currentDate)){
+
+      }
+    }
+  }
+
+  public String theNextDay(String date){
+    String nextDay;
+
+
+
+
+    return " ";
+  }
+
+  public String getNAD(){
+    return this.nextAvailableDate;
+  }
+
+  public void bookDate(String date){
+    this.datesBooked.add(date);
+  }
+
+  public boolean isBookedOnThisDate(String date){
+    for (int i = 0; i < datesBooked.size(); i++){
+      if (date.equals(datesBooked.get(i))){
+        return true;
+      }
+    }
+    return false;
   }
 
   public String getCode(){
@@ -36,18 +76,5 @@ public class Venue {
 
   public String gethireFee(){
     return this.hireFeeInput;
-  }
-
-  public void bookDate(String date){
-    this.datesBooked.add(date);
-  }
-
-  public boolean isBookedOnThisDate(String date){
-    for (int i = 0; i < datesBooked.size(); i++){
-      if (date.equals(datesBooked.get(i))){
-        return true;
-      }
-    }
-    return false;
   }
 }
