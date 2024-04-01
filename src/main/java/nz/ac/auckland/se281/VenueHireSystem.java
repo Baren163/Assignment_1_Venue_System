@@ -280,10 +280,12 @@ List<Venue> venueList = new ArrayList<Venue>();
       options[3] = numAttenders;
     }
 
+    String bookingID = BookingReferenceGenerator.generateBookingReference();
 
     // Book the venue
-    venueList.get(venueIndex).bookDate(options[1]);
-    MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venueList.get(venueIndex).getName(), options[1], options[3]);
+    venueList.get(venueIndex).bookDate(options[1], bookingID);
+
+    MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(bookingID, venueList.get(venueIndex).getName(), options[1], options[3]);
   
     // Need to figure out how to update venues next available date and impement it when systemDate changes or
     //when venue gets booked for a certain day
@@ -292,7 +294,26 @@ List<Venue> venueList = new ArrayList<Venue>();
   }
 
   public void printBookings(String venueCode) {
-    // TODO implement this method
+
+    int venueIndex;
+    venueIndex = -1;
+
+    for (int i = 0; i < venueList.size(); i++){
+      if (venueList.get(i).getCode().equals(venueCode)){
+        venueIndex = i;
+        break;
+      }
+    }
+
+    if (venueIndex == -1){
+      MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+      return;
+    }
+
+    MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venueList.get(venueIndex).getName());
+
+    venueList.get(venueIndex).printVenueBookings();
+
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {

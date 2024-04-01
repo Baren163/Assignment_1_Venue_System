@@ -13,6 +13,7 @@ public class Venue {
   private String nextAvailableDate;
 
   List<String> datesBooked = new ArrayList<String>();
+  List<String> bookingReferences = new ArrayList<String>();
 
   Venue(String venueName, String venueCode, String capacityInput, String hireFeeInput){
 
@@ -22,6 +23,16 @@ public class Venue {
     this.hireFeeInput = hireFeeInput;
   }
 
+  public void printVenueBookings(){
+    if (bookingReferences.isEmpty()){
+      MessageCli.PRINT_BOOKINGS_NONE.printMessage(this.venueName);
+      return;
+    }
+
+    for (int i = 0; i < bookingReferences.size(); i++){
+      MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(bookingReferences.get(i), datesBooked.get(i));
+    }
+  }
 
   public void updateNAD(String currentDate){
     // current date in form DD/MM/YYYY
@@ -67,8 +78,9 @@ public class Venue {
     return this.nextAvailableDate;
   }
 
-  public void bookDate(String date){
+  public void bookDate(String date, String booking_reference){
     this.datesBooked.add(date);
+    this.bookingReferences.add(booking_reference);
   }
 
   public boolean isBookedOnThisDate(String date){
