@@ -64,7 +64,6 @@ List<Venue> venueList = new ArrayList<Venue>();
         MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueList.size()), "s");
           break;
       }
-
       for (int i = 0; i < venueList.size(); i++){
         
         MessageCli.VENUE_ENTRY.printMessage(venueList.get(i).getName(), venueList.get(i).getCode(), venueList.get(i).getCapacity(), venueList.get(i).gethireFee(), venueList.get(i).getNAD());
@@ -315,6 +314,10 @@ List<Venue> venueList = new ArrayList<Venue>();
     venueList.get(venueIndex).printVenueBookings();
 
   }
+
+  
+                // -------------------------------  CP 3  ------------------------------- \\
+
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
     // TODO implement this method
