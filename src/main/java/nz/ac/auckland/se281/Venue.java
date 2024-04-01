@@ -18,30 +18,50 @@ public class Venue {
 
     this.venueName = venueName;
     this.venueCode = venueCode;
-    this. capacityInput = capacityInput;
+    this.capacityInput = capacityInput;
     this.hireFeeInput = hireFeeInput;
   }
 
+
   public void updateNAD(String currentDate){
+    // current date in form DD/MM/YYYY
+
+    nextAvailableDate = currentDate;
+
     if (datesBooked.isEmpty()){
-      nextAvailableDate = currentDate;
+      return;
     }
 
-    for (int i = 0; i < datesBooked.size(); i++){
-      if (datesBooked.get(i).equals(currentDate)){
+    int i = 0;
+    while (i != datesBooked.size()){
+      // While we havn't made it to the end of the datesBooked list
 
+      for (i = 0; i < datesBooked.size(); i++){
+        if (datesBooked.get(i).equals(nextAvailableDate)){
+          // If today is booked
+
+          String[] dateParts = nextAvailableDate.split("/");
+          String dateDay = dateParts[0];
+          String dateMonth = dateParts[1];
+          String dateYear = dateParts[2];
+          int dateDayInt = Integer.parseInt(dateDay);
+          int dateMonthInt = Integer.parseInt(dateMonth);
+          int dateYearInt = Integer.parseInt(dateYear);
+
+          dateDayInt ++;
+
+          dateDay = String.format("%02d", dateDayInt);
+          dateMonth = String.format("%02d", dateMonthInt);
+          dateYear = String.format("%02d", dateYearInt);
+
+          nextAvailableDate = dateDay + "/" + dateMonth + "/" + dateYear;
+          
+          break;
+        }
       }
-    }
+  }
   }
 
-  public String theNextDay(String date){
-    String nextDay;
-
-
-
-
-    return " ";
-  }
 
   public String getNAD(){
     return this.nextAvailableDate;
@@ -59,6 +79,8 @@ public class Venue {
     }
     return false;
   }
+
+
 
   public String getCode(){
 

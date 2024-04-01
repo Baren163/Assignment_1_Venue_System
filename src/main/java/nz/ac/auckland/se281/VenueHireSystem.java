@@ -67,7 +67,7 @@ List<Venue> venueList = new ArrayList<Venue>();
 
       for (int i = 0; i < venueList.size(); i++){
         
-        MessageCli.VENUE_ENTRY.printMessage(venueList.get(i).getName(), venueList.get(i).getCode(), venueList.get(i).getCapacity(), venueList.get(i).gethireFee());
+        MessageCli.VENUE_ENTRY.printMessage(venueList.get(i).getName(), venueList.get(i).getCode(), venueList.get(i).getCapacity(), venueList.get(i).gethireFee(), venueList.get(i).getNAD());
         
       }
 
@@ -151,6 +151,10 @@ List<Venue> venueList = new ArrayList<Venue>();
     systemDate = day + "/" + month + "/" + year;
 
     MessageCli.DATE_SET.printMessage(systemDate);
+
+    for (int i = 0; i < venueList.size(); i++){
+      venueList.get(i).updateNAD(systemDate);
+    }
 
   }
 
@@ -283,6 +287,7 @@ List<Venue> venueList = new ArrayList<Venue>();
   
     // Need to figure out how to update venues next available date and impement it when systemDate changes or
     //when venue gets booked for a certain day
+    venueList.get(venueIndex).updateNAD(systemDate);
   
   }
 
