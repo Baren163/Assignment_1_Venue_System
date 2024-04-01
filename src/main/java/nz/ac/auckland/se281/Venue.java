@@ -10,7 +10,7 @@ public class Venue {
   private String capacityInput;
   private String hireFeeInput;
 
-  private String nextAvailableDate;
+  private String nextAvailableDate = " ";
 
   List<String> datesBooked = new ArrayList<String>();
   List<String> bookingReferences = new ArrayList<String>();
