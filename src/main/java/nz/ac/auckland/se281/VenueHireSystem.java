@@ -440,7 +440,8 @@ List<Booking> bookingList = new ArrayList<Booking>();
   }
 
   public void viewInvoice(String bookingReference) {
-    // TODO implement this method
+
+    int bookingIndex = -1;
 
     boolean refCheck = false;
 
@@ -459,6 +460,29 @@ List<Booking> bookingList = new ArrayList<Booking>();
       MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
       return;
     }
+
+    for (int i = 0; i < bookingList.size(); i++){
+      if (bookingList.get(i).getCode().equalsIgnoreCase(bookingReference)){
+        bookingIndex = i;
+        break;
+      }
+    }
+
+    MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference, bookingList.get(bookingIndex).getEmail(), bookingList.get(bookingIndex).getDateBookingMade(), bookingList.get(bookingIndex).getDateOfEvent(), bookingList.get(bookingIndex).getNumGuests(), bookingList.get(bookingIndex).getVenue().getName());
+
+    // INVOICE_CONTENT_TOP_HALF(
+    //   "\n===============================================================\n"
+    //       + "                          INVOICE\n"
+    //       + "           -------------------------------------\n\n"
+    //       + "Booking Reference: #%s\n\n"
+    //       + "Booking Details:\n"
+    //       + "Customer Email: %s\n"
+    //       + "Date of Booking: %s\n\n"
+    //       + "Event Details:\n"
+    //       + "Party Date: %s\n"
+    //       + "Number of Guests: %s\n"
+    //       + "Venue: %s\n\n"
+    //       + "Cost Breakdown:")
 
     // Venue name
     venueList.get(venueIn).getName();
