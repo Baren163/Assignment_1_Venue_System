@@ -324,7 +324,6 @@ List<Venue> venueList = new ArrayList<Venue>();
   List<Floral> floralServices = new ArrayList<Floral>();
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
-    // TODO implement this method
 
     // Check if bookingReference exists
     //  method name: referenceExists(bookingReference). It will be a method for the Venue class and
@@ -383,7 +382,31 @@ List<Venue> venueList = new ArrayList<Venue>();
   }
 
   public void addServiceFloral(String bookingReference, FloralType floralType) {
-    // TODO implement this method
+    
+    String floralTypeName = floralType.getName();
+
+    boolean refCheck = false;
+
+    for (int j = 0; j < venueList.size(); j++){
+      if (venueList.get(j).referenceExists(bookingReference) == true){
+        refCheck = true;
+        int venueIn = j;
+        break;
+      }
+    }
+
+    if (refCheck == false){
+      // Print the error msg
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Floral", bookingReference);
+      return;
+    }
+
+    cateringServices.add(new Catering(bookingReference, floralTypeName));
+
+    String msgEntry = "Floral (" + floralTypeName + ")";
+
+    MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(msgEntry, bookingReference);
+
   }
 
   public void viewInvoice(String bookingReference) {
