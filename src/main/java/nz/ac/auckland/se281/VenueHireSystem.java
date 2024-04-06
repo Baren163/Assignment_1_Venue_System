@@ -359,6 +359,27 @@ List<Venue> venueList = new ArrayList<Venue>();
 
   public void addServiceMusic(String bookingReference) {
     // TODO implement this method
+
+    boolean refCheck = false;
+
+    for (int j = 0; j < venueList.size(); j++){
+      if (venueList.get(j).referenceExists(bookingReference) == true){
+        refCheck = true;
+        int venueIn = j;
+        break;
+      }
+    }
+
+    if (refCheck == false){
+      // Print the error msg
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
+      return;
+    }
+
+    musicServices.add(new Music(bookingReference));
+
+    MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Music", bookingReference);
+
   }
 
   public void addServiceFloral(String bookingReference, FloralType floralType) {
