@@ -346,6 +346,7 @@ List<Venue> venueList = new ArrayList<Venue>();
     if (refCheck == false){
       // Print the error msg
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(cateringTypeName, bookingReference);
+      return;
     }
 
     cateringServices.add(new Catering(bookingReference, cateringTypeName));
