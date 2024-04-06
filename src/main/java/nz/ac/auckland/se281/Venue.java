@@ -93,6 +93,19 @@ public class Venue {
   }
 
 
+  public boolean referenceExists(String bookingReference){
+
+    for (int i = 0; i < bookingReferences.size(); i++){
+      if (bookingReference.equalsIgnoreCase(bookingReferences.get(i))){
+        return true;
+      }
+    }
+
+
+    return false;
+  }
+
+
 
   public String getCode(){
 

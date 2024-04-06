@@ -12,8 +12,6 @@ public abstract class Service {
     this.bookingReference = bookingReference;
   }
 
-  public abstract void addService();
-
   public abstract String getBookingReference();
   
 }

@@ -319,12 +319,37 @@ List<Venue> venueList = new ArrayList<Venue>();
                 // -------------------------------  CP 3  ------------------------------- \\
 
 
+  List<Catering> cateringServices = new ArrayList<Catering>();
+  List<Music> musicServices = new ArrayList<Music>();
+  List<Floral> floralServices = new ArrayList<Floral>();
+
   public void addCateringService(String bookingReference, CateringType cateringType) {
     // TODO implement this method
 
+    // Check if bookingReference exists
+    //  method name: referenceExists(bookingReference). It will be a method for the Venue class and
+    //so what I will do is go through each venue and check every single booking reference on it until
+    //I find it.
+
     String cateringTypeName = cateringType.getName();
 
-    // We need to add the catering service with a specified type to a specified booking
+    boolean refCheck = false;
+
+    for (int j = 0; j < venueList.size(); j++){
+      if (venueList.get(j).referenceExists(bookingReference) == true){
+        refCheck = true;
+        int venueIn = j;
+        break;
+      }
+    }
+
+    if (refCheck == false){
+      // Print the error msg
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(cateringTypeName, bookingReference);
+    }
+
+    cateringServices.add(new Catering(bookingReference, cateringTypeName));
+
   }
 
   public void addServiceMusic(String bookingReference) {
