@@ -345,11 +345,15 @@ List<Venue> venueList = new ArrayList<Venue>();
 
     if (refCheck == false){
       // Print the error msg
-      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(cateringTypeName, bookingReference);
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Catering", bookingReference);
       return;
     }
 
     cateringServices.add(new Catering(bookingReference, cateringTypeName));
+
+    String msgEntry = "Catering (" + cateringTypeName + ")";
+
+    MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(msgEntry, bookingReference);
 
   }
 
