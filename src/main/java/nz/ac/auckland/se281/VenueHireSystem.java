@@ -12,6 +12,9 @@ public class VenueHireSystem {
 // Venue list
 List<Venue> venueList = new ArrayList<Venue>();
 
+// Bookings list
+List<Booking> bookingList = new ArrayList<Booking>();
+
   public VenueHireSystem() {}
 
   public void printVenues() {
@@ -289,6 +292,9 @@ List<Venue> venueList = new ArrayList<Venue>();
     // Need to figure out how to update venues next available date and impement it when systemDate changes or
     //when venue gets booked for a certain day
     venueList.get(venueIndex).updateNAD(systemDate);
+
+    // Create booking object in bookings list
+    bookingList.add(new Booking(bookingID, options[2], venueList.get(venueIndex), systemDate, options[1], options[3]));
   
   }
 
@@ -319,9 +325,7 @@ List<Venue> venueList = new ArrayList<Venue>();
                 // -------------------------------  CP 3  ------------------------------- \\
 
 
-  List<Catering> cateringServices = new ArrayList<Catering>();
-  List<Music> musicServices = new ArrayList<Music>();
-  List<Floral> floralServices = new ArrayList<Floral>();
+
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
 
@@ -329,6 +333,8 @@ List<Venue> venueList = new ArrayList<Venue>();
     //  method name: referenceExists(bookingReference). It will be a method for the Venue class and
     //so what I will do is go through each venue and check every single booking reference on it until
     //I find it.
+
+    int bookingIndex = -1;
 
     String cateringTypeName = cateringType.getName();
 
@@ -348,7 +354,14 @@ List<Venue> venueList = new ArrayList<Venue>();
       return;
     }
 
-    cateringServices.add(new Catering(bookingReference, cateringTypeName));
+    for (int i = 0; i < bookingList.size(); i++){
+      if (bookingList.get(i).getCode().equalsIgnoreCase(bookingReference)){
+        bookingIndex = i;
+        break;
+      }
+    }
+
+    bookingList.get(bookingIndex).addCatering(bookingReference, cateringTypeName);
 
     String msgEntry = "Catering (" + cateringTypeName + ")";
 
@@ -357,7 +370,8 @@ List<Venue> venueList = new ArrayList<Venue>();
   }
 
   public void addServiceMusic(String bookingReference) {
-    // TODO implement this method
+    
+    int bookingIndex = -1;
 
     boolean refCheck = false;
 
@@ -375,13 +389,22 @@ List<Venue> venueList = new ArrayList<Venue>();
       return;
     }
 
-    musicServices.add(new Music(bookingReference));
+    for (int i = 0; i < bookingList.size(); i++){
+      if (bookingList.get(i).getCode().equalsIgnoreCase(bookingReference)){
+        bookingIndex = i;
+        break;
+      }
+    }
+
+    bookingList.get(bookingIndex).addMusic(bookingReference);
 
     MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Music", bookingReference);
 
   }
 
   public void addServiceFloral(String bookingReference, FloralType floralType) {
+
+    int bookingIndex = -1;
     
     String floralTypeName = floralType.getName();
 
@@ -401,7 +424,14 @@ List<Venue> venueList = new ArrayList<Venue>();
       return;
     }
 
-    cateringServices.add(new Catering(bookingReference, floralTypeName));
+    for (int i = 0; i < bookingList.size(); i++){
+      if (bookingList.get(i).getCode().equalsIgnoreCase(bookingReference)){
+        bookingIndex = i;
+        break;
+      }
+    }
+
+    bookingList.get(bookingIndex).addCatering(bookingReference, floralTypeName);
 
     String msgEntry = "Floral (" + floralTypeName + ")";
 
@@ -411,5 +441,33 @@ List<Venue> venueList = new ArrayList<Venue>();
 
   public void viewInvoice(String bookingReference) {
     // TODO implement this method
+
+    boolean refCheck = false;
+
+    int venueIn = -1;
+
+    for (int j = 0; j < venueList.size(); j++){
+      if (venueList.get(j).referenceExists(bookingReference) == true){
+        refCheck = true;
+        venueIn = j;
+        break;
+      }
+    }
+
+    if (refCheck == false){
+      // Print the error msg
+      MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
+      return;
+    }
+
+    // Venue name
+    venueList.get(venueIn).getName();
+    // Venue capacity
+    venueList.get(venueIn).getCapacity();
+    // Venue hirefee
+    venueList.get(venueIn).gethireFee();
+
+
+
   }
 }
