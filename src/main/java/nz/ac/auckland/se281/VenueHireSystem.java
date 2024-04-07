@@ -483,29 +483,45 @@ List<Booking> bookingList = new ArrayList<Booking>();
     //       + "Venue: %s\n\n"
     //       + "Cost Breakdown:")
 
+    int cateringPrice = 0;
+    int floralPrice = 0;
+    int musicPrice = 0;
 
+    int hireFeeCost = Integer.parseInt(venueList.get(venueIn).gethireFee());
     MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venueList.get(venueIn).gethireFee());
     // INVOICE_CONTENT_VENUE_FEE("  * Venue hire - $%s")
 
     if (bookingList.get(bookingIndex).hasCatering()){
       int numGuests_int = Integer.parseInt((bookingList.get(bookingIndex).getNumGuests()));
-      int price = (bookingList.get(bookingIndex).getCatering().getCateringTypeCPP()) * numGuests_int;
-      String price_String = Integer.toString(price);
+      cateringPrice = (bookingList.get(bookingIndex).getCatering().getCateringTypeCPP()) * numGuests_int;
+      String price_String = Integer.toString(cateringPrice);
 
       MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage((bookingList.get(bookingIndex).getCatering().getCateringTypeName()), price_String);
     }
     // INVOICE_CONTENT_CATERING_ENTRY("  * Catering (%s) - $%s")
 
     if (bookingList.get(bookingIndex).hasMusic()){
+      musicPrice = 500;
       MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage("500");
     }
     // INVOICE_CONTENT_MUSIC_ENTRY("  * Music - $%s")
 
     if (bookingList.get(bookingIndex).hasFloral()){
-      String floralCost_String = Integer.toString((bookingList.get(bookingIndex).getFloral().getFloralTypeCost()));
-      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage((bookingList.get(bookingIndex).getFloral().getFloralTypeName()), floralCost_String);
+      floralPrice = (bookingList.get(bookingIndex).getFloral().getFloralTypeCost());
+      String floralPrice_String = Integer.toString((bookingList.get(bookingIndex).getFloral().getFloralTypeCost()));
+      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage((bookingList.get(bookingIndex).getFloral().getFloralTypeName()), floralPrice_String);
     }
     // INVOICE_CONTENT_FLORAL_ENTRY("  * Floral (%s) - $%s")
 
+
+    int totalCost = hireFeeCost + cateringPrice + musicPrice + floralPrice;
+    String totalCost_String = Integer.toString(totalCost);
+
+    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(totalCost_String);
+    // INVOICE_CONTENT_BOTTOM_HALF(
+    //   "Total Amount: $%s\n\n"
+    //       + "Thank you for choosing 281 Venue Hire!\n"
+    //       + "For any inquiries, please contact support@281venuehire.co.nz.\n"
+    //       + "===============================================================\n"),
   }
 }
