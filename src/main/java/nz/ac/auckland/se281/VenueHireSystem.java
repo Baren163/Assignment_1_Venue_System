@@ -337,6 +337,7 @@ List<Booking> bookingList = new ArrayList<Booking>();
     int bookingIndex = -1;
 
     String cateringTypeName = cateringType.getName();
+    int cateringTypeCPP = cateringType.getCostPerPerson();
 
     boolean refCheck = false;
 
@@ -360,7 +361,7 @@ List<Booking> bookingList = new ArrayList<Booking>();
       }
     }
 
-    bookingList.get(bookingIndex).addCatering(bookingReference, cateringTypeName);
+    bookingList.get(bookingIndex).addCatering(bookingReference, cateringTypeName, cateringTypeCPP);
 
     String msgEntry = "Catering (" + cateringTypeName + ")";
 
@@ -405,6 +406,7 @@ List<Booking> bookingList = new ArrayList<Booking>();
     int bookingIndex = -1;
     
     String floralTypeName = floralType.getName();
+    int floralTypeCost = floralType.getCost();
 
     boolean refCheck = false;
 
@@ -428,7 +430,7 @@ List<Booking> bookingList = new ArrayList<Booking>();
       }
     }
 
-    bookingList.get(bookingIndex).addCatering(bookingReference, floralTypeName);
+    bookingList.get(bookingIndex).addFloral(bookingReference, floralTypeName, floralTypeCost);
 
     String msgEntry = "Floral (" + floralTypeName + ")";
 
@@ -485,13 +487,25 @@ List<Booking> bookingList = new ArrayList<Booking>();
     MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venueList.get(venueIn).gethireFee());
     // INVOICE_CONTENT_VENUE_FEE("  * Venue hire - $%s")
 
-    MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage((null));
+    if (bookingList.get(bookingIndex).hasCatering()){
+      int numGuests_int = Integer.parseInt((bookingList.get(bookingIndex).getNumGuests()));
+      int price = (bookingList.get(bookingIndex).getCatering().getCateringTypeCPP()) * numGuests_int;
+      String price_String = Integer.toString(price);
+
+      MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage((bookingList.get(bookingIndex).getCatering().getCateringTypeName()), price_String);
+    }
     // INVOICE_CONTENT_CATERING_ENTRY("  * Catering (%s) - $%s")
 
+    if (bookingList.get(bookingIndex).hasMusic()){
+      MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage("500");
+    }
     // INVOICE_CONTENT_MUSIC_ENTRY("  * Music - $%s")
+
+    if (bookingList.get(bookingIndex).hasFloral()){
+      String floralCost_String = Integer.toString((bookingList.get(bookingIndex).getFloral().getFloralTypeCost()));
+      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage((bookingList.get(bookingIndex).getFloral().getFloralTypeName()), floralCost_String);
+    }
     // INVOICE_CONTENT_FLORAL_ENTRY("  * Floral (%s) - $%s")
-
-
 
   }
 }

@@ -46,21 +46,33 @@ public class Booking {
     return this.numGuests;
   }
 
-  public boolean isThereCatering(){
+  public Catering getCatering(){
+    return this.cateringService;
+  }
+
+  public Music getMusic(){
+    return this.musicService;
+  }
+
+  public Floral getFloral(){
+    return this.floralService;
+  }
+
+  public boolean hasCatering(){
     return this.cateringService != null;
   }
 
-  public boolean isThereMusic(){
+  public boolean hasMusic(){
     return this.musicService != null;
   }
 
-  public boolean isThereFloral(){
+  public boolean hasFloral(){
     return this.floralService != null;
   }
 
-  public void addCatering(String bookingReference, String cateringTypeName){
+  public void addCatering(String bookingReference, String cateringTypeName, int cateringTypeCPP){
 
-    this.cateringService = new Catering(bookingReference, cateringTypeName);
+    this.cateringService = new Catering(bookingReference, cateringTypeName, cateringTypeCPP);
   }
 
   public void addMusic(String bookingReference){
@@ -68,8 +80,8 @@ public class Booking {
     this.musicService = new Music(bookingReference);
   }
 
-  public void addFloral(String bookingReference, String floralTypeName){
+  public void addFloral(String bookingReference, String floralTypeName, int floralTypeCost){
 
-    this.floralService = new Floral(bookingReference, floralTypeName);
+    this.floralService = new Floral(bookingReference, floralTypeName, floralTypeCost);
   }
 }
