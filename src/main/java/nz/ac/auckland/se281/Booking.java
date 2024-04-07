@@ -1,13 +1,10 @@
 package nz.ac.auckland.se281;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Booking {
 
-  List<Catering> cateringServices = new ArrayList<Catering>();
-  List<Music> musicServices = new ArrayList<Music>();
-  List<Floral> floralServices = new ArrayList<Floral>();
+  private Catering cateringService;
+  private Music musicService;
+  private Floral floralService;
 
   private String bookingCode;
   private String email;
@@ -49,18 +46,30 @@ public class Booking {
     return this.numGuests;
   }
 
+  public boolean isThereCatering(){
+    return this.cateringService != null;
+  }
+
+  public boolean isThereMusic(){
+    return this.musicService != null;
+  }
+
+  public boolean isThereFloral(){
+    return this.floralService != null;
+  }
+
   public void addCatering(String bookingReference, String cateringTypeName){
 
-    this.cateringServices.add(new Catering(bookingReference, cateringTypeName));
+    this.cateringService = new Catering(bookingReference, cateringTypeName);
   }
 
   public void addMusic(String bookingReference){
 
-    this.musicServices.add(new Music(bookingReference));
+    this.musicService = new Music(bookingReference);
   }
 
   public void addFloral(String bookingReference, String floralTypeName){
 
-    this.floralServices.add(new Floral(bookingReference, floralTypeName));
+    this.floralService = new Floral(bookingReference, floralTypeName);
   }
 }

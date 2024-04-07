@@ -343,7 +343,6 @@ List<Booking> bookingList = new ArrayList<Booking>();
     for (int j = 0; j < venueList.size(); j++){
       if (venueList.get(j).referenceExists(bookingReference) == true){
         refCheck = true;
-        int venueIn = j;
         break;
       }
     }
@@ -378,7 +377,6 @@ List<Booking> bookingList = new ArrayList<Booking>();
     for (int j = 0; j < venueList.size(); j++){
       if (venueList.get(j).referenceExists(bookingReference) == true){
         refCheck = true;
-        int venueIn = j;
         break;
       }
     }
@@ -413,7 +411,6 @@ List<Booking> bookingList = new ArrayList<Booking>();
     for (int j = 0; j < venueList.size(); j++){
       if (venueList.get(j).referenceExists(bookingReference) == true){
         refCheck = true;
-        int venueIn = j;
         break;
       }
     }
@@ -484,12 +481,15 @@ List<Booking> bookingList = new ArrayList<Booking>();
     //       + "Venue: %s\n\n"
     //       + "Cost Breakdown:")
 
-    // Venue name
-    venueList.get(venueIn).getName();
-    // Venue capacity
-    venueList.get(venueIn).getCapacity();
-    // Venue hirefee
-    venueList.get(venueIn).gethireFee();
+
+    MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venueList.get(venueIn).gethireFee());
+    // INVOICE_CONTENT_VENUE_FEE("  * Venue hire - $%s")
+
+    MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage((null));
+    // INVOICE_CONTENT_CATERING_ENTRY("  * Catering (%s) - $%s")
+
+    // INVOICE_CONTENT_MUSIC_ENTRY("  * Music - $%s")
+    // INVOICE_CONTENT_FLORAL_ENTRY("  * Floral (%s) - $%s")
 
 
 
