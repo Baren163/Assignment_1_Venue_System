@@ -207,7 +207,7 @@ List<Booking> bookingList = new ArrayList<Booking>();
       return;
     }
 
-    if (venueList.get(venueIndex).isBookedOnThisDate(options[1])){
+    if (venueList.get(venueIndex).checkIfBookedOnThisDate(options[1])){
       MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venueList.get(venueIndex).getName(), options[1]);
       return;
     }
@@ -342,7 +342,7 @@ List<Booking> bookingList = new ArrayList<Booking>();
     boolean refCheck = false;
 
     for (int j = 0; j < venueList.size(); j++){
-      if (venueList.get(j).referenceExists(bookingReference) == true){
+      if (venueList.get(j).doesReferenceExist(bookingReference) == true){
         refCheck = true;
         break;
       }
@@ -376,7 +376,7 @@ List<Booking> bookingList = new ArrayList<Booking>();
     boolean refCheck = false;
 
     for (int j = 0; j < venueList.size(); j++){
-      if (venueList.get(j).referenceExists(bookingReference) == true){
+      if (venueList.get(j).doesReferenceExist(bookingReference) == true){
         refCheck = true;
         break;
       }
@@ -411,7 +411,7 @@ List<Booking> bookingList = new ArrayList<Booking>();
     boolean refCheck = false;
 
     for (int j = 0; j < venueList.size(); j++){
-      if (venueList.get(j).referenceExists(bookingReference) == true){
+      if (venueList.get(j).doesReferenceExist(bookingReference) == true){
         refCheck = true;
         break;
       }
@@ -447,7 +447,7 @@ List<Booking> bookingList = new ArrayList<Booking>();
     int venueIn = -1;
 
     for (int j = 0; j < venueList.size(); j++){
-      if (venueList.get(j).referenceExists(bookingReference) == true){
+      if (venueList.get(j).doesReferenceExist(bookingReference) == true){
         refCheck = true;
         venueIn = j;
         break;

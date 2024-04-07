@@ -16,7 +16,7 @@ public class Venue {
   List<String> bookingReferences = new ArrayList<String>();
 
   Venue(String venueName, String venueCode, String capacityInput, String hireFeeInput){
-
+    // Constructing the object
     this.venueName = venueName;
     this.venueCode = venueCode;
     this.capacityInput = capacityInput;
@@ -24,17 +24,21 @@ public class Venue {
   }
 
   public void printVenueBookings(){
+    // If there are no booking references in the bookings list then print error messsage and exit method
     if (bookingReferences.isEmpty()){
       MessageCli.PRINT_BOOKINGS_NONE.printMessage(this.venueName);
       return;
     }
 
+    // Print the contents of the bookings list
     for (int i = 0; i < bookingReferences.size(); i++){
       MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(bookingReferences.get(i), datesBooked.get(i));
     }
   }
 
   public void updateNAD(String currentDate){
+    // Changes the next available date on this venue object
+
     // current date in form DD/MM/YYYY
 
     nextAvailableDate = currentDate;
@@ -45,11 +49,11 @@ public class Venue {
 
     int i = 0;
     while (i != datesBooked.size()){
-      // While we havn't made it to the end of the datesBooked list
+      // While we havn't made it to the end of the datesBooked list keep executing
 
       for (i = 0; i < datesBooked.size(); i++){
         if (datesBooked.get(i).equals(nextAvailableDate)){
-          // If today is booked
+          // If today is booked then increment day by one
 
           String[] dateParts = nextAvailableDate.split("/");
           String dateDay = dateParts[0];
@@ -83,7 +87,7 @@ public class Venue {
     this.bookingReferences.add(booking_reference);
   }
 
-  public boolean isBookedOnThisDate(String date){
+  public boolean checkIfBookedOnThisDate(String date){
     for (int i = 0; i < datesBooked.size(); i++){
       if (date.equals(datesBooked.get(i))){
         return true;
@@ -93,7 +97,7 @@ public class Venue {
   }
 
 
-  public boolean referenceExists(String bookingReference){
+  public boolean doesReferenceExist(String bookingReference){
 
     for (int i = 0; i < bookingReferences.size(); i++){
       if (bookingReference.equalsIgnoreCase(bookingReferences.get(i))){
@@ -106,7 +110,7 @@ public class Venue {
   }
 
 
-
+  // The getter methods
   public String getCode(){
 
     return this.venueCode;

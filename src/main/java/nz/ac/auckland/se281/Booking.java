@@ -14,6 +14,7 @@ public class Booking {
   private String numGuests;
 
   public Booking(String code, String email, Venue venue, String dateBookingMade, String dateOfEvent, String numGuests){
+    // Setting all of this objects values to the given ones in the constructor
     this.bookingCode = code;
     this.email = email;
     this.venue = venue;
