@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class Catering extends Service{
+public class Catering extends Service {
 
   private String cateringTypeName;
   private int cateringTypeCPP;
@@ -17,7 +17,7 @@ public class Catering extends Service{
     return this.cateringTypeName;
   }
 
-  public int getCateringTypeCPP() {
+  public int getCateringTypeCostPerPerson() {
     return this.cateringTypeCPP;
   }
 

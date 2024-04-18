@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class Floral extends Service{
+public class Floral extends Service {
 
   private String floralTypeName;
   private int floralTypeCost;

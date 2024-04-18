@@ -10,15 +10,16 @@ import nz.ac.auckland.se281.Types.FloralType;
 public class VenueHireSystem {
 
   // Venue list
-  List<Venue> venueList = new ArrayList<Venue>();
+  private List<Venue> venueList = new ArrayList<Venue>();
 
   // Bookings list
-  List<Booking> bookingList = new ArrayList<Booking>();
+  private List<Booking> bookingList = new ArrayList<Booking>();
 
   public VenueHireSystem() {}
 
   public void printVenues() {
-    // I want this method to print all of the venues in the system and a selection of its details
+    // I want this method to print all of the venues
+    //in the system and a selection of its details
 
     // Firstly check if there are any venues to print
     if (venueList.isEmpty()) {
@@ -29,45 +30,44 @@ public class VenueHireSystem {
     switch (venueList.size()) {
 
       case 1:
-      MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
+        break;
       
       case 2:
-      MessageCli.NUMBER_VENUES.printMessage("are", "two", "s");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("are", "two", "s");
+        break;
 
       case 3:
-      MessageCli.NUMBER_VENUES.printMessage("are", "three", "s");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("are", "three", "s");
+        break;
               
       case 4:
-      MessageCli.NUMBER_VENUES.printMessage("are", "four", "s");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("are", "four", "s");
+        break;
 
       case 5:
-      MessageCli.NUMBER_VENUES.printMessage("are", "five", "s");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("are", "five", "s");
+        break;
               
       case 6:
-      MessageCli.NUMBER_VENUES.printMessage("are", "six", "s");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("are", "six", "s");
+        break;
 
       case 7:
-      MessageCli.NUMBER_VENUES.printMessage("are", "seven", "s");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("are", "seven", "s");
+        break;
               
       case 8:
-      MessageCli.NUMBER_VENUES.printMessage("are", "eight", "s");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("are", "eight", "s");
+        break;
 
       case 9:
-      MessageCli.NUMBER_VENUES.printMessage("are", "nine", "s");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("are", "nine", "s");
+        break;
 
       default:
-      
-      MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueList.size()), "s");
-      break;
+        MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(venueList.size()), "s");
+        break;
     }
 
     for (int i = 0; i < venueList.size(); i++) {
@@ -79,8 +79,10 @@ public class VenueHireSystem {
   }
 
   public void createVenue(String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-    // I want this method to create a new instance of the venue class with the 'identifier' of the string entered in
-    // venueName parameter. Then I want it to store on it the 3 other parameters entered with the createVenue method.
+    // I want this method to create a new instance of the venue
+    //class with the 'identifier' of the string entered in
+    // venueName parameter. Then I want it to store on it the 3
+    //other parameters entered with the createVenue method.
     // And add it to 'the system'
 
     // Check if venueName parameter is blank
@@ -106,31 +108,32 @@ public class VenueHireSystem {
     try {
       capacityInput_int = Integer.parseInt(capacityInput);
       } catch(Exception e) {
-      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "");
-      return;
+        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "");
+        return;
     }
 
     try {
       hireFeeInput_int = Integer.parseInt(hireFeeInput);
       } catch(Exception e) {
-      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
-      return;
+        MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
+        return;
     }
 
 
 
     // Check if capacity and hireFee are positive numbers
-    if(capacityInput_int < 0) {
+    if (capacityInput_int < 0) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
       return;
     }
-    if(hireFeeInput_int < 0) {
+    if (hireFeeInput_int < 0) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
       return;
     }
 
     
-    // Create the new venue instance with the specified parameters and add it straight to the list
+    // Create the new venue instance with the specified
+    //parameters and add it straight to the list
     venueList.add(new Venue(venueName, venueCode, capacityInput, hireFeeInput));
     MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
   }
@@ -141,7 +144,7 @@ public class VenueHireSystem {
 
 
 
-  String systemDate = " ";
+  private String systemDate = " ";
 
   public void setSystemDate(String dateInput) {
 
@@ -156,7 +159,7 @@ public class VenueHireSystem {
     MessageCli.DATE_SET.printMessage(systemDate);
 
     for (int i = 0; i < venueList.size(); i++) {
-      venueList.get(i).updateNAD(systemDate);
+      venueList.get(i).updateNextAvailableDate(systemDate);
     }
 
   }
@@ -259,43 +262,48 @@ public class VenueHireSystem {
       return;
     }
 
-    // When the options provided might not be ideal, but they aren’t enough to stop a booking from being made:
+    // When the options provided might not be ideal, 
+    //but they aren’t enough to stop a booking from being made:
 
-    // If the specified number of attendees (options[3]) is below 25% of the venue capacity or above 100% of
-    //the venue capacity then change the number (options[3]) to 25% or 100% of the venue capacity respectively
+    // If the specified number of attendees (options[3]) is below
+    //25% of the venue capacity or above 100% of
+    //the venue capacity then change the number (options[3]) to
+    //25% or 100% of the venue capacity respectively
     //and print that message
 
-    // Turn options[3] (number of people attending) into integer to compare with venue capacity integer
-    int numAttenders_int = Integer.parseInt(options[3]);
+    // Turn options[3] (number of people attending) into integer
+    //to compare with venue capacity integer
+    int numAttendersInt = Integer.parseInt(options[3]);
     int venueCapacity_int = Integer.parseInt(venueList.get(venueIndex).getCapacity());
-    if (4 * numAttenders_int < venueCapacity_int) {
+    if (4 * numAttendersInt < venueCapacity_int) {
       
-      numAttenders_int = (int)(0.25*venueCapacity_int);
-      String numAttenders = Integer.toString(numAttenders_int);
+      numAttendersInt = (int) (0.25*venueCapacity_int);
+      String numAttenders = Integer.toString(numAttendersInt);
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], numAttenders, venueList.get(venueIndex).getCapacity());
 
       options[3] = numAttenders;
-    } else if (numAttenders_int > venueCapacity_int) {
-      numAttenders_int = venueCapacity_int;
-      String numAttenders = Integer.toString(numAttenders_int);
+    } else if (numAttendersInt > venueCapacity_int) {
+      numAttendersInt = venueCapacity_int;
+      String numAttenders = Integer.toString(numAttendersInt);
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], numAttenders, venueList.get(venueIndex).getCapacity());
       
       options[3] = numAttenders;
     }
 
-    String bookingID = BookingReferenceGenerator.generateBookingReference();
+    String bookingIdentity = BookingReferenceGenerator.generateBookingReference();
 
     // Book the venue
-    venueList.get(venueIndex).bookDate(options[1], bookingID);
+    venueList.get(venueIndex).bookDate(options[1], bookingIdentity);
 
-    MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(bookingID, venueList.get(venueIndex).getName(), options[1], options[3]);
+    MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(bookingIdentity, venueList.get(venueIndex).getName(), options[1], options[3]);
   
-    // Need to figure out how to update venues next available date and impement it when systemDate changes or
+    // Need to figure out how to update venues next available date
+    //and impement it when systemDate changes or
     //when venue gets booked for a certain day
-    venueList.get(venueIndex).updateNAD(systemDate);
+    venueList.get(venueIndex).updateNextAvailableDate(systemDate);
 
     // Create booking object in bookings list
-    bookingList.add(new Booking(bookingID, options[2], venueList.get(venueIndex), systemDate, options[1], options[3]));
+    bookingList.add(new Booking(bookingIdentity, options[2], venueList.get(venueIndex), systemDate, options[1], options[3]));
   
   }
 
@@ -331,14 +339,16 @@ public class VenueHireSystem {
   public void addCateringService(String bookingReference, CateringType cateringType) {
 
     // Check if bookingReference exists
-    //  method name: referenceExists(bookingReference). It will be a method for the Venue class and
-    //so what I will do is go through each venue and check every single booking reference on it until
+    //  method name: referenceExists(bookingReference).
+    //It will be a method for the Venue class and
+    //so what I will do is go through each venue and
+    //check every single booking reference on it until
     //I find it.
 
     int bookingIndex = -1;
 
     String cateringTypeName = cateringType.getName();
-    int cateringTypeCPP = cateringType.getCostPerPerson();
+    int cateringTypeCostPerPerson = cateringType.getCostPerPerson();
 
     boolean refCheck = false;
 
@@ -362,7 +372,7 @@ public class VenueHireSystem {
       }
     }
 
-    bookingList.get(bookingIndex).addCatering(bookingReference, cateringTypeName, cateringTypeCPP);
+    bookingList.get(bookingIndex).addCatering(bookingReference, cateringTypeName, cateringTypeCostPerPerson);
 
     String msgEntry = "Catering (" + cateringTypeName + ")";
 
@@ -479,11 +489,11 @@ public class VenueHireSystem {
     // INVOICE_CONTENT_VENUE_FEE("  * Venue hire - $%s")
 
     if (bookingList.get(bookingIndex).hasCatering()) {
-      int numGuests_int = Integer.parseInt((bookingList.get(bookingIndex).getNumGuests()));
-      cateringPrice = (bookingList.get(bookingIndex).getCatering().getCateringTypeCPP()) * numGuests_int;
-      String price_String = Integer.toString(cateringPrice);
+      int numGuestsInt = Integer.parseInt((bookingList.get(bookingIndex).getNumGuests()));
+      cateringPrice = (bookingList.get(bookingIndex).getCatering().getCateringTypeCostPerPerson()) * numGuestsInt;
+      String priceString = Integer.toString(cateringPrice);
 
-      MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage((bookingList.get(bookingIndex).getCatering().getCateringTypeName()), price_String);
+      MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage((bookingList.get(bookingIndex).getCatering().getCateringTypeName()), priceString);
     }
     // INVOICE_CONTENT_CATERING_ENTRY("  * Catering (%s) - $%s")
 
@@ -495,16 +505,16 @@ public class VenueHireSystem {
 
     if (bookingList.get(bookingIndex).hasFloral()) {
       floralPrice = (bookingList.get(bookingIndex).getFloral().getFloralTypeCost());
-      String floralPrice_String = Integer.toString((bookingList.get(bookingIndex).getFloral().getFloralTypeCost()));
-      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage((bookingList.get(bookingIndex).getFloral().getFloralTypeName()), floralPrice_String);
+      String floralPriceString = Integer.toString((bookingList.get(bookingIndex).getFloral().getFloralTypeCost()));
+      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage((bookingList.get(bookingIndex).getFloral().getFloralTypeName()), floralPriceString);
     }
     // INVOICE_CONTENT_FLORAL_ENTRY("  * Floral (%s) - $%s")
 
 
     int totalCost = hireFeeCost + cateringPrice + musicPrice + floralPrice;
-    String totalCost_String = Integer.toString(totalCost);
+    String totalCostString = Integer.toString(totalCost);
 
-    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(totalCost_String);
+    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(totalCostString);
 
   }
 }

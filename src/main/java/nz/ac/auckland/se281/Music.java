@@ -1,8 +1,8 @@
 package nz.ac.auckland.se281;
 
-public class Music extends Service{
+public class Music extends Service {
 
-  String cateringType;
+  protected String cateringType;
 
   public Music(String bookingReference) {
     super(bookingReference); // Call the constructor of the superclass

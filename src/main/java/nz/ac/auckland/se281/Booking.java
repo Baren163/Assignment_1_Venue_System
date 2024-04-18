@@ -14,7 +14,8 @@ public class Booking {
   private String numGuests;
 
   public Booking(String code, String email, Venue venue, String dateBookingMade, String dateOfEvent, String numGuests) {
-    // Setting all of this objects values to the given ones in the constructor
+    // Setting all of this objects values to the given
+    //ones in the constructor
     this.bookingCode = code;
     this.email = email;
     this.venue = venue;
@@ -71,9 +72,9 @@ public class Booking {
     return this.floralService != null;
   }
 
-  public void addCatering(String bookingReference, String cateringTypeName, int cateringTypeCPP) {
+  public void addCatering(String bookingReference, String cateringTypeName, int cateringTypeCostPerPerson) {
 
-    this.cateringService = new Catering(bookingReference, cateringTypeName, cateringTypeCPP);
+    this.cateringService = new Catering(bookingReference, cateringTypeName, cateringTypeCostPerPerson);
   }
 
   public void addMusic(String bookingReference) {

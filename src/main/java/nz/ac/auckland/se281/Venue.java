@@ -12,8 +12,8 @@ public class Venue {
 
   private String nextAvailableDate = " ";
 
-  List<String> datesBooked = new ArrayList<String>();
-  List<String> bookingReferences = new ArrayList<String>();
+  private List<String> datesBooked = new ArrayList<String>();
+  private List<String> bookingReferences = new ArrayList<String>();
 
   Venue(String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     // Constructing the object
@@ -24,7 +24,8 @@ public class Venue {
   }
 
   public void printVenueBookings() {
-    // If there are no booking references in the bookings list then print error messsage and exit method
+    // If there are no booking references in the bookings
+    //list then print error messsage and exit method
     if (bookingReferences.isEmpty()) {
       MessageCli.PRINT_BOOKINGS_NONE.printMessage(this.venueName);
       return;
@@ -36,7 +37,7 @@ public class Venue {
     }
   }
 
-  public void updateNAD(String currentDate) {
+  public void updateNextAvailableDate(String currentDate) {
     // Changes the next available date on this venue object
 
     // current date in form DD/MM/YYYY
