@@ -3,14 +3,14 @@ package nz.ac.auckland.se281;
 public class Catering extends Service {
 
   private String cateringTypeName;
-  private int cateringTypeCPP;
+  private int cateringTypeCostPerPerson;
 
-  public Catering(String bookingReference, String cateringTypeName, int cateringTypeCPP) {
+  public Catering(String bookingReference, String cateringTypeName, int cateringTypeCostPerPerson) {
     super(bookingReference); // Call the constructor of the superclass
 
     // Additional logic for the catering class
     this.cateringTypeName = cateringTypeName;
-    this.cateringTypeCPP = cateringTypeCPP;
+    this.cateringTypeCostPerPerson = cateringTypeCostPerPerson;
 }
   
   public String getCateringTypeName() {
@@ -18,7 +18,7 @@ public class Catering extends Service {
   }
 
   public int getCateringTypeCostPerPerson() {
-    return this.cateringTypeCPP;
+    return this.cateringTypeCostPerPerson;
   }
 
   public String getBookingReference() {

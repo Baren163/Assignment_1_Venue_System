@@ -72,7 +72,7 @@ public class VenueHireSystem {
 
     for (int i = 0; i < venueList.size(); i++) {
       
-      MessageCli.VENUE_ENTRY.printMessage(venueList.get(i).getName(), venueList.get(i).getCode(), venueList.get(i).getCapacity(), venueList.get(i).gethireFee(), venueList.get(i).getNAD());
+      MessageCli.VENUE_ENTRY.printMessage(venueList.get(i).getName(), venueList.get(i).getCode(), venueList.get(i).getCapacity(), venueList.get(i).gethireFee(), venueList.get(i).getNextAvailableDate());
       
     }
 
@@ -101,19 +101,19 @@ public class VenueHireSystem {
       }
     }
     
-    int capacityInput_int;
-    int hireFeeInput_int;
+    int capacityInputInt;
+    int hireFeeInputInt;
 
     // Check if the capacityInput and hireFeeInput is a string with just a number
     try {
-      capacityInput_int = Integer.parseInt(capacityInput);
+      capacityInputInt = Integer.parseInt(capacityInput);
       } catch(Exception e) {
         MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "");
         return;
     }
 
     try {
-      hireFeeInput_int = Integer.parseInt(hireFeeInput);
+      hireFeeInputInt = Integer.parseInt(hireFeeInput);
       } catch(Exception e) {
         MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
         return;
@@ -122,11 +122,11 @@ public class VenueHireSystem {
 
 
     // Check if capacity and hireFee are positive numbers
-    if (capacityInput_int < 0) {
+    if (capacityInputInt < 0) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
       return;
     }
-    if (hireFeeInput_int < 0) {
+    if (hireFeeInputInt < 0) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
       return;
     }
@@ -274,16 +274,16 @@ public class VenueHireSystem {
     // Turn options[3] (number of people attending) into integer
     //to compare with venue capacity integer
     int numAttendersInt = Integer.parseInt(options[3]);
-    int venueCapacity_int = Integer.parseInt(venueList.get(venueIndex).getCapacity());
-    if (4 * numAttendersInt < venueCapacity_int) {
+    int venueCapacityInt = Integer.parseInt(venueList.get(venueIndex).getCapacity());
+    if (4 * numAttendersInt < venueCapacityInt) {
       
-      numAttendersInt = (int) (0.25*venueCapacity_int);
+      numAttendersInt = (int) (0.25*venueCapacityInt);
       String numAttenders = Integer.toString(numAttendersInt);
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], numAttenders, venueList.get(venueIndex).getCapacity());
 
       options[3] = numAttenders;
-    } else if (numAttendersInt > venueCapacity_int) {
-      numAttendersInt = venueCapacity_int;
+    } else if (numAttendersInt > venueCapacityInt) {
+      numAttendersInt = venueCapacityInt;
       String numAttenders = Integer.toString(numAttendersInt);
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], numAttenders, venueList.get(venueIndex).getCapacity());
       

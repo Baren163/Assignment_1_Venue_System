@@ -79,13 +79,13 @@ public class Venue {
   }
 
 
-  public String getNAD() {
+  public String getNextAvailableDate() {
     return this.nextAvailableDate;
   }
 
-  public void bookDate(String date, String booking_reference) {
+  public void bookDate(String date, String bookingReference) {
     this.datesBooked.add(date);
-    this.bookingReferences.add(booking_reference);
+    this.bookingReferences.add(bookingReference);
   }
 
   public boolean checkIfBookedOnThisDate(String date) {
