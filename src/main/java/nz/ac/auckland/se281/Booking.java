@@ -13,7 +13,7 @@ public class Booking {
   private String dateOfEvent;
   private String numGuests;
 
-  public Booking(String code, String email, Venue venue, String dateBookingMade, String dateOfEvent, String numGuests){
+  public Booking(String code, String email, Venue venue, String dateBookingMade, String dateOfEvent, String numGuests) {
     // Setting all of this objects values to the given ones in the constructor
     this.bookingCode = code;
     this.email = email;
@@ -23,65 +23,65 @@ public class Booking {
     this.numGuests = numGuests;
   }
 
-  public String getCode(){
+  public String getCode() {
     return this.bookingCode;
   }
 
-  public String getEmail(){
+  public String getEmail() {
     return this.email;
   }
 
-  public Venue getVenue(){
+  public Venue getVenue() {
     return this.venue;
   }
 
-  public String getDateBookingMade(){
+  public String getDateBookingMade() {
     return this.dateBookingMade;
   }
 
-  public String getDateOfEvent(){
+  public String getDateOfEvent() {
     return this.dateOfEvent;
   }
 
-  public String getNumGuests(){
+  public String getNumGuests() {
     return this.numGuests;
   }
 
-  public Catering getCatering(){
+  public Catering getCatering() {
     return this.cateringService;
   }
 
-  public Music getMusic(){
+  public Music getMusic() {
     return this.musicService;
   }
 
-  public Floral getFloral(){
+  public Floral getFloral() {
     return this.floralService;
   }
 
-  public boolean hasCatering(){
+  public boolean hasCatering() {
     return this.cateringService != null;
   }
 
-  public boolean hasMusic(){
+  public boolean hasMusic() {
     return this.musicService != null;
   }
 
-  public boolean hasFloral(){
+  public boolean hasFloral() {
     return this.floralService != null;
   }
 
-  public void addCatering(String bookingReference, String cateringTypeName, int cateringTypeCPP){
+  public void addCatering(String bookingReference, String cateringTypeName, int cateringTypeCPP) {
 
     this.cateringService = new Catering(bookingReference, cateringTypeName, cateringTypeCPP);
   }
 
-  public void addMusic(String bookingReference){
+  public void addMusic(String bookingReference) {
 
     this.musicService = new Music(bookingReference);
   }
 
-  public void addFloral(String bookingReference, String floralTypeName, int floralTypeCost){
+  public void addFloral(String bookingReference, String floralTypeName, int floralTypeCost) {
 
     this.floralService = new Floral(bookingReference, floralTypeName, floralTypeCost);
   }

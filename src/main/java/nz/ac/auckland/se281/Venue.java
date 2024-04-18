@@ -15,7 +15,7 @@ public class Venue {
   List<String> datesBooked = new ArrayList<String>();
   List<String> bookingReferences = new ArrayList<String>();
 
-  Venue(String venueName, String venueCode, String capacityInput, String hireFeeInput){
+  Venue(String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     // Constructing the object
     this.venueName = venueName;
     this.venueCode = venueCode;
@@ -23,36 +23,36 @@ public class Venue {
     this.hireFeeInput = hireFeeInput;
   }
 
-  public void printVenueBookings(){
+  public void printVenueBookings() {
     // If there are no booking references in the bookings list then print error messsage and exit method
-    if (bookingReferences.isEmpty()){
+    if (bookingReferences.isEmpty()) {
       MessageCli.PRINT_BOOKINGS_NONE.printMessage(this.venueName);
       return;
     }
 
     // Print the contents of the bookings list
-    for (int i = 0; i < bookingReferences.size(); i++){
+    for (int i = 0; i < bookingReferences.size(); i++) {
       MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(bookingReferences.get(i), datesBooked.get(i));
     }
   }
 
-  public void updateNAD(String currentDate){
+  public void updateNAD(String currentDate) {
     // Changes the next available date on this venue object
 
     // current date in form DD/MM/YYYY
 
     nextAvailableDate = currentDate;
 
-    if (datesBooked.isEmpty()){
+    if (datesBooked.isEmpty()) {
       return;
     }
 
     int i = 0;
-    while (i != datesBooked.size()){
+    while (i != datesBooked.size()) {
       // While we havn't made it to the end of the datesBooked list keep executing
 
-      for (i = 0; i < datesBooked.size(); i++){
-        if (datesBooked.get(i).equals(nextAvailableDate)){
+      for (i = 0; i < datesBooked.size(); i++) {
+        if (datesBooked.get(i).equals(nextAvailableDate)) {
           // If today is booked then increment day by one
 
           String[] dateParts = nextAvailableDate.split("/");
@@ -78,18 +78,18 @@ public class Venue {
   }
 
 
-  public String getNAD(){
+  public String getNAD() {
     return this.nextAvailableDate;
   }
 
-  public void bookDate(String date, String booking_reference){
+  public void bookDate(String date, String booking_reference) {
     this.datesBooked.add(date);
     this.bookingReferences.add(booking_reference);
   }
 
-  public boolean checkIfBookedOnThisDate(String date){
-    for (int i = 0; i < datesBooked.size(); i++){
-      if (date.equals(datesBooked.get(i))){
+  public boolean checkIfBookedOnThisDate(String date) {
+    for (int i = 0; i < datesBooked.size(); i++) {
+      if (date.equals(datesBooked.get(i))) {
         return true;
       }
     }
@@ -97,10 +97,10 @@ public class Venue {
   }
 
 
-  public boolean doesReferenceExist(String bookingReference){
+  public boolean doesReferenceExist(String bookingReference) {
 
-    for (int i = 0; i < bookingReferences.size(); i++){
-      if (bookingReference.equalsIgnoreCase(bookingReferences.get(i))){
+    for (int i = 0; i < bookingReferences.size(); i++) {
+      if (bookingReference.equalsIgnoreCase(bookingReferences.get(i))) {
         return true;
       }
     }
@@ -111,21 +111,21 @@ public class Venue {
 
 
   // The getter methods
-  public String getCode(){
+  public String getCode() {
 
     return this.venueCode;
   }
 
-  public String getName(){
+  public String getName() {
 
     return this.venueName;
   }
 
-  public String getCapacity(){
+  public String getCapacity() {
     return this.capacityInput;
   }
 
-  public String gethireFee(){
+  public String gethireFee() {
     return this.hireFeeInput;
   }
 }

@@ -8,7 +8,7 @@ public abstract class Service {
 
   String bookingReference;
 
-  public Service(String bookingReference){
+  public Service(String bookingReference) {
     this.bookingReference = bookingReference;
   }
 

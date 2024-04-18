@@ -13,16 +13,16 @@ public class Floral extends Service{
     this.floralTypeCost = floralTypeCost;
   }
 
-  public String getFloralTypeName(){
+  public String getFloralTypeName() {
     return this.floralTypeName;
   }
 
-  public int getFloralTypeCost(){
+  public int getFloralTypeCost() {
     return this.floralTypeCost;
   }
 
 
-  public String getBookingReference(){
+  public String getBookingReference() {
     return this.bookingReference;
   }
 }

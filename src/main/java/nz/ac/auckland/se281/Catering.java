@@ -13,15 +13,15 @@ public class Catering extends Service{
     this.cateringTypeCPP = cateringTypeCPP;
 }
   
-  public String getCateringTypeName(){
+  public String getCateringTypeName() {
     return this.cateringTypeName;
   }
 
-  public int getCateringTypeCPP(){
+  public int getCateringTypeCPP() {
     return this.cateringTypeCPP;
   }
 
-  public String getBookingReference(){
+  public String getBookingReference() {
     return this.bookingReference;
   }
 

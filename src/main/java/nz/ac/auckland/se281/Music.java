@@ -9,7 +9,7 @@ public class Music extends Service{
 
   }
 
-  public String getBookingReference(){
+  public String getBookingReference() {
     return this.bookingReference;
   }
 
